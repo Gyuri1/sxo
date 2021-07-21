@@ -7,19 +7,6 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "datatype.date",
-        "properties": {
-          "value": "0001-01-01T00:00:00+00:00",
-          "scope": "local",
-          "name": "Threat Response Token Time",
-          "type": "datatype.date",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01PVZO1ZNBU9O5iY0DwicD8c1Wo9XZs2t3o",
-        "object_type": "variable_workflow"
-      },
-      {
         "schema_id": "datatype.secure_string",
         "properties": {
           "value": "",
@@ -30,6 +17,19 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01PVZO1ZNBSM22eB2YcsqjoOzehQxfVnD6v",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.date",
+        "properties": {
+          "value": "0001-01-01T00:00:00+00:00",
+          "scope": "local",
+          "name": "Threat Response Token Time",
+          "type": "datatype.date",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PVZO1ZNBU9O5iY0DwicD8c1Wo9XZs2t3o",
         "object_type": "variable_workflow"
       },
       {
@@ -141,7 +141,7 @@
         "type": "core.calculate_date",
         "base_type": "activity",
         "properties": {
-          "adjustment": -30000,
+          "adjustment": -300,
           "continue_on_failure": false,
           "display_name": "Calculate Time 5 Mins Ago",
           "original_date": "$workflow.definition_workflow_01PVZO1ZWTBIS0byMGgMaa33geGVoq6YGTo.output.start_time$",
