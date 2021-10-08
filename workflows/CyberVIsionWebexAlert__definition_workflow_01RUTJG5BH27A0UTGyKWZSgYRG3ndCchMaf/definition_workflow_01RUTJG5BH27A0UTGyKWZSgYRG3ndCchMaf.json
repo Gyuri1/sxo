@@ -1,0 +1,472 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01RUTJG5BH27A0UTGyKWZSgYRG3ndCchMaf",
+    "name": "Cyber Vision - Webex Alert V2",
+    "title": "Cyber Vision - Webex Alert V2",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Threat Response Access Token",
+          "type": "datatype.secure_string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01RUTJG5GTGTO3lubbX5qwuMnckgwWvR2X8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Incident Description",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01RUTJG5GT5RD3D8Or8wJAHxuTpX0Qe0Cdi",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.date",
+        "properties": {
+          "value": "0001-01-01T00:00:00+00:00",
+          "scope": "local",
+          "name": "Threat Response Token Time",
+          "type": "datatype.date",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01RUTJG5GTRWO5D34DDhPz0sdjqH7SNof1u",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "5 mins = -300\n",
+      "display_name": "Cyber Vision - Webex Alert V2",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": true,
+        "target_group": {
+          "target_group_id": "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH",
+          "run_on_all_targets": false,
+          "selected_target_types": [
+            "web-service.endpoint"
+          ],
+          "use_criteria": {
+            "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+            "conditions": [
+              {
+                "operator": "eq",
+                "left_operand": "$targetgroup.web-service endpoint.input.display_name$",
+                "right_operand": "Private_CTIA_Target"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01RUTKC16OG6P3KuNBlMb7EPO6Mqms9XOcw",
+        "name": "Threat Response - Generate Access Token",
+        "title": "Threat Response - Generate Access Token",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Threat Response - Generate Access Token",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target_group_criteria": true,
+            "target_group": {
+              "run_on_all_targets": false,
+              "use_criteria": {
+                "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                "conditions": [
+                  {
+                    "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                    "operator": "eq",
+                    "right_operand": "CTR_For_Access_Token"
+                  }
+                ]
+              }
+            }
+          },
+          "workflow_id": "definition_workflow_01PP75S3LTBW4420OZU3rdHWKHFnE6aC7yH"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01RUTJGBQOHBF2Nk0MiE773soNc4bL9cePd",
+        "name": "Set Variables",
+        "title": "Set Local Token Values",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Local Token Values",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01RUTJG5BH27A0UTGyKWZSgYRG3ndCchMaf.local.variable_workflow_01RUTJG5GTGTO3lubbX5qwuMnckgwWvR2X8$",
+              "variable_value_new": "$activity.definition_activity_01RUTKC16OG6P3KuNBlMb7EPO6Mqms9XOcw.output.variable_workflow_01PP75S3G7CJY6WAQr2IJC7qga2SIoE09gQ$"
+            },
+            {
+              "variable_to_update": "$workflow.definition_workflow_01RUTJG5BH27A0UTGyKWZSgYRG3ndCchMaf.local.variable_workflow_01RUTJG5GTRWO5D34DDhPz0sdjqH7SNof1u$",
+              "variable_value_new": "$activity.definition_activity_01RUTKC16OG6P3KuNBlMb7EPO6Mqms9XOcw.output.start_time$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01RUTJGCO8PMB099j49XzkreQ0I8Eor0X1k",
+        "name": "Calculate Date",
+        "title": "Calculate Time 5 Mins Ago",
+        "type": "core.calculate_date",
+        "base_type": "activity",
+        "properties": {
+          "adjustment": -300,
+          "continue_on_failure": false,
+          "display_name": "Calculate Time 5 Mins Ago",
+          "original_date": "$workflow.definition_workflow_01RUTJG5BH27A0UTGyKWZSgYRG3ndCchMaf.output.start_time$",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01RUTJGDE8EWY0i18axHUQfArPjfWz4VbsZ",
+        "name": "HTTP Request",
+        "title": "Search for Cisco Cyber Vision Incidents ",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01RUTJG5BH27A0UTGyKWZSgYRG3ndCchMaf.local.variable_workflow_01RUTJG5GTGTO3lubbX5qwuMnckgwWvR2X8$"
+            }
+          ],
+          "display_name": "Search for Cisco Cyber Vision Incidents ",
+          "method": "GET",
+          "relative_url": "/ctia/incident/search?limit=100\u0026offset=0\u0026sort_by=timestamp\u0026sort_order=asc\u0026query=source:\"Cisco Cyber Vision\" AND status:\"New\" AND incident_time.opened:{$activity.definition_activity_01RUTJGCO8PMB099j49XzkreQ0I8Eor0X1k.output.result$ TO *}",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "use_workflow_target_group": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01RUTJGE6KUYW0UHJfjF8YmVVA0P7y14hjb",
+        "name": "Condition Block",
+        "title": "Was the request successful?",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Was the request successful?",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01RUTJGESS1LS3uE9uirvyckd0sL2SABTtX",
+            "name": "Condition Branch",
+            "title": "No",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01RUTJGDE8EWY0i18axHUQfArPjfWz4VbsZ.output.status_code$",
+                "operator": "ne",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "No",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01RUTJGFEI9X90pupefIrGQbGh7oVV2mxYC",
+                "name": "Completed",
+                "title": "Completed",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "continue_on_failure": false,
+                  "display_name": "Completed",
+                  "result_message": "Failed to search for incidents\nStatus code: $activity.definition_activity_01RUTJGDE8EWY0i18axHUQfArPjfWz4VbsZ.output.status_code$\nResponse body:  $activity.definition_activity_01RUTJGDE8EWY0i18axHUQfArPjfWz4VbsZ.output.response_body$",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_01RUTJGHSML6749GnlF3fxE7bxYTNLky1yA",
+        "name": "Read Table from JSON",
+        "title": "Convert Incidents to Table",
+        "type": "corejava.read_table_from_json",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Convert Incidents to Table",
+          "input_json": "$activity.definition_activity_01RUTJGDE8EWY0i18axHUQfArPjfWz4VbsZ.output.response_body$",
+          "jsonpath_query": "$.",
+          "persist_output": false,
+          "populate_columns": false,
+          "skip_execution": false,
+          "table_columns": [
+            {
+              "column_name": "id",
+              "column_type": "string"
+            },
+            {
+              "column_name": "description",
+              "column_type": "string"
+            },
+            {
+              "column_name": "short_description",
+              "column_type": "string"
+            },
+            {
+              "column_name": "incident_time",
+              "column_type": "string"
+            },
+            {
+              "column_name": "confidence",
+              "column_type": "string"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA",
+        "name": "For Each",
+        "title": "For Each Incident",
+        "type": "logic.for_each",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "For Each Incident",
+          "skip_execution": false,
+          "source_array": "$activity.definition_activity_01RUTJGHSML6749GnlF3fxE7bxYTNLky1yA.output.read_table_from_json$"
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_01RUU4E2QKE973jpWwWmVBrDa9D75m3u30x",
+            "name": "Webex Teams - Post Message to Room",
+            "title": "Webex Teams - Post Message to Room",
+            "type": "workflow.atomic_workflow",
+            "base_type": "subworkflow",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Webex Teams - Post Message to Room",
+              "input": {
+                "variable_workflow_01PP78DJH1TI76BYfsu9g0Tqj2S6cUxjtu5": "$global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in.global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in$",
+                "variable_workflow_01PP78DJH1XNQ7gNQ5iZdperRHqrppzARXC": "$global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx.global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx$",
+                "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "New Cyber Vision Incident! Description:   [$activity.For Each Incident.input.Source Array[@].description$], Short description; [$activity.For Each Incident.input.Source Array[@].short_description$] , Time: [$activity.For Each Incident.input.Source Array[@].incident_time$], Confidence: [$activity.For Each Incident.input.Source Array[@].confidence$]",
+                "variable_workflow_01PP78DJH22BB3Ej3I8tJ4OCQur0unYGjj9": "CyberVision Incident"
+              },
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target": true,
+                "target_id": "definition_target_01J41W2HVTI6N5gJbAf2ZbHFZWMP8eX0hQS",
+                "target_type": "web-service.endpoint"
+              },
+              "workflow_id": "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw"
+            },
+            "object_type": "definition_activity"
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m"
+    ]
+  },
+  "categories": {
+    "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m": {
+      "unique_name": "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m",
+      "name": "response",
+      "title": "response",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "triggers": {
+    "triggerschedule_01RUTJG82Y71H4VndCJqgWh1EbacpVsn8b5": {
+      "workflow_id": "definition_workflow_01RUTJG5BH27A0UTGyKWZSgYRG3ndCchMaf",
+      "name": "5-min",
+      "title": "",
+      "lowercase_name": "schedule.5-min",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_01PQUM0VUUYOC3q4QDA0GGDZouwX3iTxvNq",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerschedule_01RUTJG82Y71H4VndCJqgWh1EbacpVsn8b5",
+      "object_type": "triggerschedule"
+    },
+    "triggerschedule_01RUTJG8PGUJO3xzcreo66S9p5oxDVY0O1R": {
+      "workflow_id": "definition_workflow_01RUTJG5BH27A0UTGyKWZSgYRG3ndCchMaf",
+      "name": "5min-from-3pm",
+      "title": "",
+      "lowercase_name": "schedule.5min-from-3pm",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_01Q1VIZGLK98H6RjSYGCVZyb8CYq2HZZSJF",
+      "version": "1.0.0",
+      "disabled": false,
+      "unique_name": "triggerschedule_01RUTJG8PGUJO3xzcreo66S9p5oxDVY0O1R",
+      "object_type": "triggerschedule"
+    }
+  },
+  "schedules": {
+    "schedule_01PQUM0VUUYOC3q4QDA0GGDZouwX3iTxvNq": {
+      "unique_name": "schedule_01PQUM0VUUYOC3q4QDA0GGDZouwX3iTxvNq",
+      "name": "5-mins",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "properties": {
+        "calendar": "calendar_recurring_1BMfMWvgiDhSjBQ7hTSyvz3NyVZ",
+        "timezone": "Etc/GMT+0",
+        "starttime": "08:00",
+        "interval_hours": 0,
+        "interval_minutes": 0,
+        "number_of_times": 1,
+        "display_name": "5-mins",
+        "description": ""
+      },
+      "version": "1.0.0",
+      "object_type": "schedule"
+    },
+    "schedule_01Q1VIZGLK98H6RjSYGCVZyb8CYq2HZZSJF": {
+      "unique_name": "schedule_01Q1VIZGLK98H6RjSYGCVZyb8CYq2HZZSJF",
+      "name": "5min-from-3pm",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "properties": {
+        "calendar": "calendar_recurring_1BMfMWvgiDhSjBQ7hTSyvz3NyVZ",
+        "timezone": "Europe/Belgrade",
+        "starttime": "15:00",
+        "interval_hours": 0,
+        "interval_minutes": 0,
+        "number_of_times": 1,
+        "display_name": "5min-from-3pm",
+        "description": ""
+      },
+      "version": "1.0.0",
+      "object_type": "schedule"
+    }
+  },
+  "targets": {
+    "definition_target_01J41W2HVTI6N5gJbAf2ZbHFZWMP8eX0hQS": {
+      "unique_name": "definition_target_01J41W2HVTI6N5gJbAf2ZbHFZWMP8eX0hQS",
+      "name": "Webex Teams Target",
+      "title": "Webex Teams Target",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "Webex Teams Target",
+        "host": "webexapis.com",
+        "ignore_proxy": true,
+        "no_runtime_user": true,
+        "protocol": "https"
+      }
+    }
+  },
+  "target_groups": {
+    "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH": {
+      "unique_name": "target_group_01EJ0TQWPQWBD0qiWqClJKj9FOzwiZRfOFH",
+      "name": "Default TargetGroup",
+      "title": "Default TargetGroup",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "web-service.endpoint",
+          "view_target_type": "web-service.endpoint",
+          "include_all_targets": true
+        },
+        {
+          "data_target_type": "email.smtp_endpoint",
+          "view_target_type": "email.smtp_endpoint",
+          "include_all_targets": true
+        }
+      ],
+      "object_type": "target_group"
+    }
+  },
+  "variables": {
+    "variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx": {
+      "unique_name": "variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx",
+      "properties": {
+        "value": "*****",
+        "scope": "global",
+        "name": "Webex-secure-token-bot",
+        "type": "datatype.secure_string",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in": {
+      "unique_name": "variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in",
+      "properties": {
+        "value": "Y2lzY29zcGFyazovL3VzL1JPT00vM2Q0YzVmZTAtOTZmOS0xMWVhLWEyZGUtYjdlMjZhNTIzYWJl",
+        "scope": "global",
+        "name": "Webex-room-SWC",
+        "type": "datatype.string",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw",
+    "definition_workflow_01PP75S3LTBW4420OZU3rdHWKHFnE6aC7yH"
+  ]
+}
