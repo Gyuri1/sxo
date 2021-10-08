@@ -7,6 +7,19 @@
     "base_type": "workflow",
     "variables": [
       {
+        "schema_id": "datatype.date",
+        "properties": {
+          "value": "0001-01-01T00:00:00+00:00",
+          "scope": "local",
+          "name": "Threat Response Token Time",
+          "type": "datatype.date",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01RUTJG5GTRWO5D34DDhPz0sdjqH7SNof1u",
+        "object_type": "variable_workflow"
+      },
+      {
         "schema_id": "datatype.secure_string",
         "properties": {
           "value": "",
@@ -30,19 +43,6 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01RUTJG5GT5RD3D8Or8wJAHxuTpX0Qe0Cdi",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.date",
-        "properties": {
-          "value": "0001-01-01T00:00:00+00:00",
-          "scope": "local",
-          "name": "Threat Response Token Time",
-          "type": "datatype.date",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01RUTJG5GTRWO5D34DDhPz0sdjqH7SNof1u",
         "object_type": "variable_workflow"
       }
     ],
@@ -298,7 +298,7 @@
               "input": {
                 "variable_workflow_01PP78DJH1TI76BYfsu9g0Tqj2S6cUxjtu5": "$global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in.global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in$",
                 "variable_workflow_01PP78DJH1XNQ7gNQ5iZdperRHqrppzARXC": "$global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx.global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx$",
-                "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "New Cyber Vision Incident! Description:   $activity.definition_activity_01RUTJGHSML6749GnlF3fxE7bxYTNLky1yA.output.read_table_from_json[-1].description$, Short description; [$activity.For Each Incident.input.Source Array[@].short_description$] , Time: [$activity.For Each Incident.input.Source Array[@].incident_time$], Confidence: [$activity.For Each Incident.input.Source Array[@].confidence$]",
+                "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "New Cyber Vision Incident! Description:   $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].description$, Short description; $activity.For Each Incident.input.Source Array[@].short_description$ , Time: $activity.For Each Incident.input.Source Array[@].incident_time$, Confidence: $activity.For Each Incident.input.Source Array[@].confidence$",
                 "variable_workflow_01PP78DJH22BB3Ej3I8tJ4OCQur0unYGjj9": "CyberVision Incident"
               },
               "runtime_user": {
