@@ -298,7 +298,7 @@
               "input": {
                 "variable_workflow_01PP78DJH1TI76BYfsu9g0Tqj2S6cUxjtu5": "$global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in.global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in$",
                 "variable_workflow_01PP78DJH1XNQ7gNQ5iZdperRHqrppzARXC": "$global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx.global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx$",
-                "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "New Cyber Vision Incident! Description:   [$activity.For Each Incident.input.Source Array[@].description$], Short description; [$activity.For Each Incident.input.Source Array[@].short_description$] , Time: [$activity.For Each Incident.input.Source Array[@].incident_time$], Confidence: [$activity.For Each Incident.input.Source Array[@].confidence$]",
+                "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "New Cyber Vision Incident! Description:   $activity.definition_activity_01RUTJGHSML6749GnlF3fxE7bxYTNLky1yA.output.read_table_from_json[-1].description$, Short description; [$activity.For Each Incident.input.Source Array[@].short_description$] , Time: [$activity.For Each Incident.input.Source Array[@].incident_time$], Confidence: [$activity.For Each Incident.input.Source Array[@].confidence$]",
                 "variable_workflow_01PP78DJH22BB3Ej3I8tJ4OCQur0unYGjj9": "CyberVision Incident"
               },
               "runtime_user": {
@@ -466,7 +466,7 @@
     }
   },
   "atomic_workflows": [
-    "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw",
-    "definition_workflow_01PP75S3LTBW4420OZU3rdHWKHFnE6aC7yH"
+    "definition_workflow_01PP75S3LTBW4420OZU3rdHWKHFnE6aC7yH",
+    "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw"
   ]
 }
