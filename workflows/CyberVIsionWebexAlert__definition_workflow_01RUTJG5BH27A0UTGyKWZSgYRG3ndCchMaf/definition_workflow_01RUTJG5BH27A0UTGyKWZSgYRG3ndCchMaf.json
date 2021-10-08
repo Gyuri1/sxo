@@ -298,7 +298,7 @@
               "input": {
                 "variable_workflow_01PP78DJH1TI76BYfsu9g0Tqj2S6cUxjtu5": "$global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in.global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in$",
                 "variable_workflow_01PP78DJH1XNQ7gNQ5iZdperRHqrppzARXC": "$global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx.global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx$",
-                "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "New Cyber Vision Incident!\nDescription:   $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].description$, Short description:  $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].short_description$ , Time: $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].incident_time$, Confidence: $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].confidence$",
+                "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "New Cyber Vision Incident!\nDescription:   $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].description$,\nShort description:  $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].short_description$ ,\nTime: $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].incident_time$,\nConfidence: $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].confidence$",
                 "variable_workflow_01PP78DJH22BB3Ej3I8tJ4OCQur0unYGjj9": "CyberVision Incident"
               },
               "runtime_user": {
