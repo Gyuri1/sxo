@@ -142,7 +142,7 @@
         "type": "core.calculate_date",
         "base_type": "activity",
         "properties": {
-          "adjustment": -300,
+          "adjustment": -300000,
           "continue_on_failure": false,
           "display_name": "Calculate Time 5 Mins Ago",
           "original_date": "$workflow.definition_workflow_01RUTJG5BH27A0UTGyKWZSgYRG3ndCchMaf.output.start_time$",
@@ -298,7 +298,7 @@
               "input": {
                 "variable_workflow_01PP78DJH1TI76BYfsu9g0Tqj2S6cUxjtu5": "$global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in.global.variable_01J42D66BAFE425Y4LCaygldf8YO0v5Z9in$",
                 "variable_workflow_01PP78DJH1XNQ7gNQ5iZdperRHqrppzARXC": "$global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx.global.variable_01J3Z3BMDL0KS3TWUEiO4ZN6fE3VjDifKsx$",
-                "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "New Cyber Vision Incident! Description:   $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].description$, Short description; $activity.For Each Incident.input.Source Array[@].short_description$ , Time: $activity.For Each Incident.input.Source Array[@].incident_time$, Confidence: $activity.For Each Incident.input.Source Array[@].confidence$",
+                "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "New Cyber Vision Incident!\nDescription:   $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].description$, Short description:  $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].short_description$ , Time: $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].incident_time$, Confidence: $activity.definition_activity_01RUTJGJ174E51g4yOcl0kxMER7ZUt5sfWA.input.source_array[@].confidence$",
                 "variable_workflow_01PP78DJH22BB3Ej3I8tJ4OCQur0unYGjj9": "CyberVision Incident"
               },
               "runtime_user": {
